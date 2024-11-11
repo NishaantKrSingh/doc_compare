@@ -47,6 +47,6 @@ model = genai.GenerativeModel(
 
 
 def ai_compare(doc1, doc2):
-    response = model.generate_content(f"Here we are comparing the difference between two documents to find the difference between both the documents. The data from first document is: '{doc1}' and the data from second document is '{doc2}'. Please find the difference and properly explain the differences in both of them.")
+    response = model.generate_content(f"Here we are comparing the difference between two documents to find the difference between both the documents. The data from first document is: '{doc1}' and the data from second document is '{doc2}'. Please find the difference and properly explain the differences in both of them. If the cocuments are too similar then explain as short as possible, do a longer explanantion only if the difference is noticeable.")
     print(response.text)
     return response.text
