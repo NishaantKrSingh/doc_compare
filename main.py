@@ -5,6 +5,7 @@ from pathlib import Path
 
 from modules.pdfConvert import convert
 from modules.pdfComp import compare
+from modules.aiAns import ai_compare
 
 app = FastAPI()
 
@@ -33,11 +34,13 @@ async def upload_files(file1: UploadFile = File(...), file2: UploadFile = File(.
 
     data = convert(file1_path, file2_path)
     percentage_diff = compare(data1= data[0], data2=data[1])
+    difference = ai_compare(doc1=data[0], doc2=data[1])
 
     return {
         "message": "Files uploaded successfully!",
         "file1_name": file1.filename,
         "file2_name": file2.filename,
         "data" : data,
-        "difference" : f"{percentage_diff:.2f}%" 
+        "difference %" : f"{percentage_diff:.2f}%", 
+        "difference": difference
     }
